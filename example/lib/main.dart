@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dash_chat/dash_chat.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:dash_chat/dash_chat.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             } else {
               List<DocumentSnapshot> items = snapshot.data!.docs;
               var messages =
-                  items.map((i) => ChatMessage.fromJson(i.data()!)).toList();
+                  items.map((i) => ChatMessage.fromJson(i.data() as Map)).toList();
               return DashChat(
                 key: _chatViewKey,
                 inverted: false,
